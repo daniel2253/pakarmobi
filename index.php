@@ -1,6 +1,13 @@
 <!doctype html>
-<html class="no-js" lang="en">
 
+<html class="no-js" lang="en">
+			<?php
+		session_start();
+		if (!isset($_SESSION['logged_in'])) {
+			header('Location: login.html');
+			exit;
+		}
+		?>
     <head>
         <!-- meta data -->
         <meta charset="utf-8">
@@ -155,30 +162,28 @@
 							}
 
 							// Tampilkan hasil ke pengguna
+							const aspekPerbaikanElement = document.getElementById('aspek-perbaikan');
+							aspekPerbaikanElement.innerHTML = '';
+							aspekPerbaikan.forEach(aspek => {
+								aspekPerbaikanElement.innerHTML += `<ul>${aspek}</ul>`;
+							});
+							
 							const hasilElement = document.getElementById('hasil');
 							hasilElement.innerHTML = `Hasil: <strong>${hasil}</strong><br>(CF Total: ${cfCombine.toFixed(2)})`;
-							if (aspekPerbaikan.length > 0) {
-								hasilElement.innerHTML += `<br>Aspek yang perlu diperbaiki:<br><div style='display: flex; gap: 20px;'>`;
-								const midIndex = Math.ceil(aspekPerbaikan.length / 2);
-								const leftColumn = aspekPerbaikan.slice(0, midIndex);
-								const rightColumn = aspekPerbaikan.slice(midIndex);
-
-								hasilElement.innerHTML += `<div style='flex: 1;'><ul>`;
-								leftColumn.forEach(aspek => {
-									hasilElement.innerHTML += `<li>${aspek}</li>`;
-								});
-								hasilElement.innerHTML += `</ul></div>`;
-
-								hasilElement.innerHTML += `<div style='flex: 1;'><ul>`;
-								rightColumn.forEach(aspek => {
-									hasilElement.innerHTML += `<li>${aspek}</li>`;
-								});
-								hasilElement.innerHTML += `</ul></div>`;
-
-								hasilElement.innerHTML += `</div>`;
+							// Tampilkan langkah-langkah perhitungan
+							const langkahElement = document.getElementById('langkah-cf');
+							langkahElement.innerHTML = `<p>1. Ambil nilai dari setiap gejala: ${gejala.join(', ')}</p>`;
+							langkahElement.innerHTML += `<p>2. Lakukan kombinasi konservatif secara berurutan:</p>`;
+							let langkah = `CF awal: ${gejala[0]}<br>`;
+							for (let i = 1; i < gejala.length; i++) {
+								langkah += `(${cfCombine} + ${gejala[i]}) / 2 = `;
+								cfCombine = (cfCombine + gejala[i]) / 2;
+								langkah += `${cfCombine.toFixed(2)}<br>`;
 							}
+							langkahElement.innerHTML += langkah;
+							langkahElement.innerHTML += `<p>3. Tentukan hasil akhir berdasarkan nilai CF total: ${cfCombine.toFixed(2)}</p>`;
+							
 						}
-
 
 			</script>
 			
@@ -291,7 +296,20 @@
 								<div class="single-model-search text-center">
 										<button class="welcome-btn model-search-btn" onclick="hitungCF()">Cek Kelayakan</button>
 									<div class="mt-4 text-center" id="hasil"></div> <!-- Hasil ditampilkan di sini -->
+									
+
 								</div>
+								
+								</div>
+								<div class="result-container">
+										<div class="result-left">
+											<h3>Aspek yang Perlu Diperbaiki</h3>
+											<ul id="aspek-perbaikan"></ul>
+										</div>
+										<div class="result-right">
+											<h3>Langkah-Langkah Perhitungan</h3>
+											<div id="langkah-cf"></div>
+										</div>
 								</div>
 							</div>
 							</div>
@@ -321,6 +339,8 @@
 								dapat disesuaikan dengan kondisi mobil bekas yang ingin dinilai. 
 								Setiap kriteria memiliki opsi yang berbeda, antara lain:
 								<br> - <strong>Usia dan Jarak Tempuh</strong>: Pilih berdasarkan usia mobil dan jarak tempuh yang sudah ditempuh.
+								<br> - <strong>Kondisi Mesin</strong>: Pilih berdasarkan performa mesin mobil saat ini.
+								<br> - <strong>Kondisi AC</strong>: Pilih berdasarkan kondisi AC saat ini.
 								<br> - <strong>Kondisi Body</strong>: Pilih berdasarkan kondisi eksterior mobil, seperti cat dan tingkat kerusakan.
 								<br> - <strong>Kondisi Transmisi</strong>: Pilih kondisi perpindahan gigi sesuai kenyamanan dan kelancaran transmisi mobil.</li>
 								<br> - <strong>Kondisi Ban</strong>: Pilih berdasarkan kondisi tapak dan ketebalan ban mobil.
