@@ -110,80 +110,107 @@
 				</div>
 			</div>
 			<script>
-				// Function untuk menghitung CF dengan perbaikan
 
-						function hitungCF() {
-							// Ambil nilai dari setiap input gejala
-							const gejala = [
-								parseFloat(document.getElementById('g01').value),
-								parseFloat(document.getElementById('g04').value),
-								parseFloat(document.getElementById('g07').value),
-								parseFloat(document.getElementById('g10').value),
-								parseFloat(document.getElementById('g13').value),
-								parseFloat(document.getElementById('g16').value),
-								parseFloat(document.getElementById('g19').value)
-							];
 
-							// Pastikan semua gejala memiliki nilai valid
-							if (gejala.some(isNaN)) {
-								alert('Harap pilih semua opsi sebelum menghitung kelayakan.');
-								return;
-							}
+				function hitungCF() {
+    					// Nilai CF Pakar
+						const cfPakar = {
+							jarakTempuh: 0.3,     
+							mesin: 0.3,           
+							transmisi: 0.2,      
+							servis: 0.125,          
+							ac: 0.2,              
+							body: 0.125,           
+							ban: 0.125,            
+							suratKendaraan: 0.2   
+						};
 
-							// Daftar rekomendasi aspek perbaikan
-							const rekomendasi = [
-								"Usia dan jarak tempuh perlu diperhatikan",
-								"Kondisi AC perlu diperbaiki",
-								"Mesin perlu diperbaiki",
-								"Body mobil perlu perbaikan estetika",
-								"Transmisi perlu diservis",
-								"Ban perlu diganti",
-								"Riwayat servis perlu diperbaiki"
-							];
 
-							// Lakukan perhitungan CF dengan pendekatan konservatif
-							let cfCombine = gejala[0]; // Mulai dari nilai awal (gejala pertama)
-							for (let i = 1; i < gejala.length; i++) {
-								cfCombine = (cfCombine + gejala[i]) / 2; // Kombinasi CF lebih konservatif
-							}
+					// Daftar rekomendasi perbaikan
+					const rekomendasiPerbaikan = [
+						"Jarak tempuh perlu diperiksa dan diservis",
+						"AC mobil perlu diperiksa atau diservis",
+						"Kondisi mesin memerlukan perawatan lebih lanjut",
+						"Kondisi body mobil memerlukan perbaikan",
+						"Transmisi memerlukan pengecekan dan perawatan",
+						"Ban mobil perlu diganti atau diperiksa",
+						"Riwayat servis mobil perlu diperbaiki",
+						"Surat kendaraan perlu diperhatikan kelengkapannya"
+					];
 
-							// Menentukan kategori berdasarkan hasil CF
-							let hasil = '';
-							let aspekPerbaikan = [];
+					// Ambil nilai input user (CF User)
+					const gejala = [
+						parseFloat(document.getElementById('g01').value),
+						parseFloat(document.getElementById('g04').value),
+						parseFloat(document.getElementById('g07').value),
+						parseFloat(document.getElementById('g10').value),
+						parseFloat(document.getElementById('g13').value),
+						parseFloat(document.getElementById('g16').value),
+						parseFloat(document.getElementById('g19').value),
+						parseFloat(document.getElementById('g21').value)
+					];
 
-							if (cfCombine >= 0.8) {
-								hasil = 'Mobil Anda sangat layak digunakan. Kondisi sangat baik dan mendekati standar mobil baru.';
-							} else if (cfCombine >= 0.6) {
-								hasil = 'Mobil Anda cukup layak digunakan. Beberapa aspek perlu perhatian untuk perawatan tambahan.';
-								aspekPerbaikan = gejala.map((g, i) => g < 0.8 ? rekomendasi[i] : null).filter(Boolean);
-							} else {
-								hasil = 'Mobil Anda kurang layak digunakan. Perlu perbaikan pada banyak aspek sebelum layak digunakan.';
-								aspekPerbaikan = gejala.map((g, i) => g < 0.8 ? rekomendasi[i] : null).filter(Boolean);
-							}
+					// Validasi input
+					if (gejala.some(isNaN)) {
+						alert('Harap isi semua kondisi gejala terlebih dahulu!');
+						return;
+					}
 
-							// Tampilkan hasil ke pengguna
-							const aspekPerbaikanElement = document.getElementById('aspek-perbaikan');
-							aspekPerbaikanElement.innerHTML = '';
-							aspekPerbaikan.forEach(aspek => {
-								aspekPerbaikanElement.innerHTML += `<ul>${aspek}</ul>`;
-							});
-							
-							const hasilElement = document.getElementById('hasil');
-							hasilElement.innerHTML = `Hasil: <strong>${hasil}</strong><br>(CF Total: ${cfCombine.toFixed(2)})`;
-							// Tampilkan langkah-langkah perhitungan
-							const langkahElement = document.getElementById('langkah-cf');
-							langkahElement.innerHTML = `<p>1. Ambil nilai dari setiap gejala: ${gejala.join(', ')}</p>`;
-							langkahElement.innerHTML += `<p>2. Lakukan kombinasi konservatif secara berurutan:</p>`;
-							let langkah = `CF awal: ${gejala[0]}<br>`;
-							for (let i = 1; i < gejala.length; i++) {
-								langkah += `(${cfCombine} + ${gejala[i]}) / 2 = `;
-								cfCombine = (cfCombine + gejala[i]) / 2;
-								langkah += `${cfCombine.toFixed(2)}<br>`;
-							}
-							langkahElement.innerHTML += langkah;
-							langkahElement.innerHTML += `<p>3. Tentukan hasil akhir berdasarkan nilai CF total: ${cfCombine.toFixed(2)}</p>`;
-							
+					// Hitung CF Rule (CF Pakar * CF User)
+					const cfRule = [];
+					for (let i = 0; i < gejala.length; i++) {
+						cfRule.push(cfPakar[Object.keys(cfPakar)[i]] * gejala[i]);
+					}
+
+					// Hitung CF Combine
+					let cfCombine = cfRule[0]; // Nilai awal
+					let langkahPerhitungan = `<p>Langkah-langkah perhitungan CF:</p>`;
+					langkahPerhitungan += `<p>CF Rule (CF Pakar × CF User): ${cfRule.map(cf => cf.toFixed(2)).join(', ')}</p>`;
+
+					for (let i = 1; i < cfRule.length; i++) {
+						const prev = cfCombine;
+						cfCombine = prev + cfRule[i] * (1 - prev);
+						langkahPerhitungan += `<p>CF Combine ${i}: (${prev.toFixed(2)} + ${cfRule[i].toFixed(2)} × (1 - ${prev.toFixed(2)})) = ${cfCombine.toFixed(2)}</p>`;
+					}
+
+					// Tentukan hasil akhir
+					let hasil = '';
+
+					if (cfCombine >= 0.8) {
+						hasil = 'Mobil Anda sangat layak digunakan. Kondisi sangat baik dan mendekati standar mobil baru.';
+					} else if (cfCombine >= 0.6) {
+						hasil = 'Mobil Anda cukup layak digunakan. Beberapa aspek perlu perhatian.';
+					} else {
+						hasil = 'Mobil Anda kurang layak digunakan. Banyak aspek perlu diperbaiki.';
+					}
+
+					    // Tentukan rekomendasi perbaikan
+					const aspekPerbaikan = [];
+					for (let i = 0; i < cfRule.length; i++) {
+						if (cfRule[i] < (cfPakar[Object.keys(cfPakar)[i]] * 0.8)) {
+							// Hanya tambahkan rekomendasi jika CF Rule jauh di bawah threshold 60%
+							aspekPerbaikan.push(rekomendasiPerbaikan[i]);
 						}
+					}
+
+					// Tampilkan hasil
+					document.getElementById('hasil').innerHTML = `<p><strong>Hasil:</strong> ${hasil}</p><p>CF Total: ${cfCombine.toFixed(2)}</p>`;
+					document.getElementById('hasil').style.display = 'block';
+
+					// Tampilkan aspek perbaikan
+					const aspekElement = document.getElementById('aspek-perbaikan');
+					aspekElement.innerHTML = `<p><strong>Rekomendasi Perbaikan:</strong></p>`;
+					aspekElement.innerHTML += aspekPerbaikan.length > 0
+						? `<ul>${aspekPerbaikan.map(aspek => `<li>${aspek}</li>`).join('')}</ul>`
+						: `<p>Tidak ada aspek yang perlu diperbaiki.</p>`;
+					aspekElement.style.display = 'block';
+
+					// Tampilkan langkah-langkah perhitungan
+					const langkahElement = document.getElementById('langkah-cf');
+					langkahElement.innerHTML = langkahPerhitungan;
+					langkahElement.style.display = 'block';
+				}
+
 
 			</script>
 			
@@ -280,7 +307,7 @@
 									<div class="single-model-search">
 										<h2>Surat Kendaraan</h2>
 										<div class="model-select-icon">
-											<select class="form-control">
+											<select id="g21" class="form-control">
 											  	<option value="default">Pilih Kondisi</option><!-- /.option-->
 											  	<option value="1">Surat - Surat kendaraan lengkap baik dari STNK maupun BPKB, dan pajak hidup. </option>
 											  	<option value="0.6">Surat - Surat kendaraan lengkap baik dari STNK maupun BPKB, dan pajak mati </option>
@@ -302,9 +329,9 @@
 								
 								</div>
 								<div class="result-container">
-										<div class="result-left">
+										<div class="result-left" >
 											<h3>Aspek yang Perlu Diperbaiki</h3>
-											<ul id="aspek-perbaikan"></ul>
+											<div id="aspek-perbaikan"></div>
 										</div>
 										<div class="result-right">
 											<h3>Langkah-Langkah Perhitungan</h3>
