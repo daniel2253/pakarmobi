@@ -91,6 +91,8 @@
 				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 				                    <li class=" scroll active"><a href="#home">Home</a></li>
 				                    <li class="scroll"><a href="#fitur">Fitur</a></li>
+									<li class="scroll"><a href="#deskripsi-kelayakan">Deskripsi Kelayakan</a></li>
+									<li class="scroll"><a href="#perawatan">Perawatan</a></li>
 				                    <li class="scroll"><a href="#petunjuk">Petunjuk Penggunaan</a></li>
 				                    <li class="scroll"><a href="#pengembang">Tim Pengembang</a></li>
 				                    <li><a href="login.html">Login</a></li>
@@ -345,6 +347,168 @@
 		</section><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
+		<div id="deskripsi-kelayakan" class="container" style="margin-top: 100px; margin-bottom: 100px;">
+			<h2>Deskripsi Kelayakan</h2>
+			<p style="text-align: center; font-size: 16px; color: #555;">
+				Berikut adalah kriteria kelayakan mobil berdasarkan analisis kami.
+			</p>
+		
+			<!-- Kategori Sangat Layak -->
+			<div style="margin-bottom: 40px;">
+				<h3 style="color: #28a745; font-weight: bold; text-align: left;">
+					<i class="fa fa-check-circle" style="color: #28a745;"></i> Mobil Sangat Layak
+				</h3>
+				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
+					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Jarak tempuh rendah<br>
+					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC dingin dan normal<br>
+					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Mesin dalam kondisi sempurna, tidak ada kebocoran oli dan lainnya<br>
+					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Bodi dan cat masih orisinil<br>
+					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Transmisi halus, perpindahan gigi tidak terasa<br>
+					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Tapak ban masih tebal<br>
+					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Servis lengkap dan rutin<br>
+					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat lengkap
+				</p>
+			</div>
+		
+			<!-- Kategori Cukup Layak -->
+			<div style="margin-bottom: 40px;">
+				<h3 style="color: #ffc107; font-weight: bold; text-align: left;">
+					<i class="fa fa-exclamation-circle" style="color: #ffc107;"></i> Mobil Cukup Layak
+				</h3>
+				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
+					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Jarak tempuh lebih dari 100.000 KM<br>
+					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC hidup tetapi kurang dingin<br>
+					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Akselerasi masih tergolong responsif<br>
+					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat goresan halus pada bodi mobil<br>
+					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Perpindahan gigi cukup lancar<br>
+					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Tebal ban kurang lebih 80%<br>
+					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat riwayat servis, tetapi tidak rutin<br>
+					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat lengkap
+				</p>
+			</div>
+		
+			<!-- Kategori Kurang Layak -->
+			<div>
+				<h3 style="color: #dc3545; font-weight: bold; text-align: left;">
+					<i class="fa fa-times-circle" style="color: #dc3545;"></i> Mobil Kurang Layak
+				</h3>
+				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
+					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Usia lebih dari 10 tahun<br>
+					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC mati<br>
+					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Suara mesin kasar<br>
+					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat banyak goresan dan dempul<br>
+					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Perpindahan gigi kasar<br>
+					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Ban sudah terlihat benangnya<br>
+					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Tidak ada riwayat servis sama sekali<br>
+					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat tidak lengkap
+				</p>
+			</div>
+		</div>
+
+		<<div id="perawatan" class="container" style="margin-top: 100px; margin-bottom: 100px;">
+			<h2 class="text-center" style="color: #2c3e50;">Perawatan Mobil</h2>
+			<p class="text-center" style="font-size: 16px; color: #555;">
+				Berikut adalah beberapa cara untuk merawat mobil agar selalu terlihat bagus dan awet digunakan.
+			</p>
+		
+			<div class="row">
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">1. Perawatan Mesin</h3>
+						<ul>
+							<li>Ganti oli secara teratur.</li>
+							<li>Periksa cairan rem, radiator, dan lainnya.</li>
+							<li>Servis rutin sesuai jadwal.</li>
+						</ul>
+					</div>
+				</div>
+		
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">2. Merawat Eksterior</h3>
+						<ul>
+							<li>Cuci mobil secara rutin.</li>
+							<li>Gunakan wax untuk melindungi cat.</li>
+							<li>Parkir di tempat teduh.</li>
+						</ul>
+					</div>
+				</div>
+		
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">3. Merawat Interior</h3>
+						<ul>
+							<li>Vakum interior secara rutin.</li>
+							<li>Bersihkan dashboard dan jok dengan cairan khusus.</li>
+							<li>Gunakan penghilang kelembapan.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row" style="margin-top: 30px;">
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">4. Ban dan Suspensi</h3>
+						<ul>
+							<li>Periksa tekanan angin ban secara berkala.</li>
+							<li>Lakukan rotasi ban setiap 10.000 km.</li>
+							<li>Ganti ban jika sudah aus.</li>
+						</ul>
+					</div>
+				</div>
+		
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">5. Cara Mengemudi</h3>
+						<ul>
+							<li>Hindari pengereman mendadak.</li>
+							<li>Gunakan bahan bakar berkualitas.</li>
+							<li>Jangan membawa beban berlebih.</li>
+						</ul>
+					</div>
+				</div>
+		
+				<div class="col-md-4">
+					<div class="perawatan-card">
+						<h3 style="color: #3498db;">6. Dokumen Kendaraan</h3>
+						<ul>
+							<li>Pastikan STNK dan asuransi selalu aktif.</li>
+							<li>Lengkapi dokumen kendaraan Anda.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<style>
+			.perawatan-card {
+				background-color: #ecf0f1;
+				border-radius: 10px;
+				padding: 20px;
+				margin-bottom: 20px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s;
+			}
+		
+			.perawatan-card:hover {
+				transform: scale(1.05);
+			}
+		
+			.perawatan-card h3 {
+				margin-bottom: 15px;
+			}
+		
+			.perawatan-card ul {
+				padding-left: 20px;
+			}
+		
+			.perawatan-card ul li {
+				margin-bottom: 10px;
+				color: #2c3e50;
+			}
+		</style>
+		
 
 		<!--service start -->
 		<!--featured-cars start -->
