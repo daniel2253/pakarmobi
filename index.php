@@ -125,8 +125,6 @@
 							suratKendaraan: 0.2   
 						};
 
-
-					// Daftar rekomendasi perbaikan
 					const rekomendasiPerbaikan = [
 						"Jarak tempuh perlu diperiksa dan diservis",
 						"AC mobil perlu diperiksa atau diservis",
@@ -138,7 +136,6 @@
 						"Surat kendaraan perlu diperhatikan kelengkapannya"
 					];
 
-					// Ambil nilai input user (CF User)
 					const gejala = [
 						parseFloat(document.getElementById('g01').value),
 						parseFloat(document.getElementById('g04').value),
@@ -150,13 +147,11 @@
 						parseFloat(document.getElementById('g21').value)
 					];
 
-					// Validasi input
 					if (gejala.some(isNaN)) {
 						alert('Harap isi semua kondisi gejala terlebih dahulu!');
 						return;
 					}
 
-					// Hitung CF Rule (CF Pakar * CF User)
 					const cfRule = [];
 					for (let i = 0; i < gejala.length; i++) {
 						cfRule.push(cfPakar[Object.keys(cfPakar)[i]] * gejala[i]);
@@ -209,6 +204,8 @@
 					const langkahElement = document.getElementById('langkah-cf');
 					langkahElement.innerHTML = langkahPerhitungan;
 					langkahElement.style.display = 'block';
+
+					document.getElementById('hasil').style.display = 'block';
 				}
 
 
@@ -322,14 +319,14 @@
 							
 								<div class="single-model-search text-center">
 										<button class="welcome-btn model-search-btn" onclick="hitungCF()">Cek Kelayakan</button>
-									<div class="mt-4 text-center" id="hasil"></div> <!-- Hasil ditampilkan di sini -->
+									<div class="mt-4 text-center" id="hasil" style="display: none;"></div> <!-- Hasil ditampilkan di sini -->
 									
 
 								</div>
 								
 								</div>
 								<div class="result-container">
-										<div class="result-left" >
+										<div class="result-left">
 											<h3>Aspek yang Perlu Diperbaiki</h3>
 											<div id="aspek-perbaikan"></div>
 										</div>
