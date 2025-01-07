@@ -1,13 +1,6 @@
 <!doctype html>
 
-<html class="no-js" lang="en">
-			<?php
-		session_start();
-		if (!isset($_SESSION['logged_in'])) {
-			header('Location: login.html');
-			exit;
-		}
-		?>
+<html lang="en">
     <head>
         <!-- meta data -->
         <meta charset="utf-8">
@@ -65,9 +58,7 @@
     </head>
 	
 	<body>
-		<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+
 	
 		<!--welcome-hero start -->
 		<section id="home" class="welcome-hero">
@@ -90,7 +81,6 @@
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 				                    <li class=" scroll active"><a href="#home">Home</a></li>
-				                    <li class="scroll"><a href="#fitur">Fitur</a></li>
 									<li class="scroll"><a href="#deskripsi-kelayakan">Deskripsi Kelayakan</a></li>
 									<li class="scroll"><a href="#perawatan">Perawatan</a></li>
 				                    <li class="scroll"><a href="#petunjuk">Petunjuk Penggunaan</a></li>
@@ -191,7 +181,7 @@
 					}
 
 					// Tampilkan hasil
-					document.getElementById('hasil').innerHTML = `<p><strong>Hasil:</strong> ${hasil}</p><p>CF Total: ${cfCombine.toFixed(2)}</p>`;
+					document.getElementById('hasil').innerHTML = `<p><strong>Hasil:</strong> ${hasil}</p>`;
 					document.getElementById('hasil').style.display = 'block';
 
 					// Tampilkan aspek perbaikan
@@ -320,23 +310,14 @@
 
 							
 								<div class="single-model-search text-center">
-										<button class="welcome-btn model-search-btn" onclick="hitungCF()">Cek Kelayakan</button>
+										<button class="button" onclick="hitungCF()">  Cek Kelayakan </button>
 									<div class="mt-4 text-center" id="hasil" style="display: none;"></div> <!-- Hasil ditampilkan di sini -->
 									
 
 								</div>
 								
 								</div>
-								<div class="result-container">
-										<div class="result-left">
-											<h3>Aspek yang Perlu Diperbaiki</h3>
-											<div id="aspek-perbaikan"></div>
-										</div>
-										<div class="result-right">
-											<h3>Langkah-Langkah Perhitungan</h3>
-											<div id="langkah-cf"></div>
-										</div>
-								</div>
+							
 							</div>
 							</div>
 						</div>
@@ -347,87 +328,9 @@
 		</section><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
-	<style>
-    /* Container styling */
-    .horizontal-card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-top: 60px;
-    }
 
-    /* Card styling */
-    .desk-card {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        overflow: hidden;
-        width: 100%;
-        max-width: 370px;
-    }
-
-    .desk-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Icon styling */
-    .desk-card-icon {
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 80px;
-    }
-
-    .desk-card-icon i {
-        font-size: 36px;
-    }
-
-    /* Text content styling */
-    .desk-card-content {
-        padding: 20px;
-        flex: 1;
-    }
-
-    .desk-card-content h3 {
-        margin: 0 0 10px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .desk-card-content p {
-        margin: 0;
-        color: #333;
-        line-height: 1.8;
-    }
-
-    /* Colors for card categories */
-    .desk-card.success .desk-card-icon {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .desk-card.warning .desk-card-icon {
-        background-color: #ffc107;
-        color: white;
-    }
-
-    .desk-card.danger .desk-card-icon {
-        background-color: #dc3545;
-        color: white;
-    }
-</style>
-
-		<div id="deskripsi-kelayakan" class="container" style="margin-top: 170px; margin-bottom: 100px;">
-			<h2>Deskripsi Kelayakan</h2>
-			<p style="text-align: center; font-size: 16px; color: #555;">
-				Berikut adalah kriteria kelayakan mobil berdasarkan analisis kami.
-			</p>
+		<div id="deskripsi-kelayakan" class="container" style="margin-top: 200px; margin-bottom: 50px;">
+			<h1 style="text-align: center;">Deskripsi Kelayakan Mobil Bekas</h1>
 			<!-- Kategori Sangat Layak -->
 			<div class="horizontal-card-container">
     <!-- Kategori Sangat Layak -->
@@ -491,11 +394,13 @@
     </div>
 </div>
 
-		<<div id="perawatan" class="container" style="margin-top: 100px; margin-bottom: 100px;">
-			<h2 class="text-center" style="color: #2c3e50;">Perawatan Mobil</h2>
+		<div section id="perawatan" class="container" style="margin-top: 120px; padding-top: 10px;">
+			<h1 class="text-center" style="color: #2c3e50;">Perawatan Mobil</h1>
 			<p class="text-center" style="font-size: 16px; color: #555;">
 				Berikut adalah beberapa cara untuk merawat mobil agar selalu terlihat bagus dan awet digunakan.
 			</p>
+			<br>
+			
 		
 			<div class="row">
 				<div class="col-md-4">
@@ -566,34 +471,8 @@
 				</div>
 			</div>
 		</div>
-
-		<style>
-			.perawatan-card {
-				background-color: #ecf0f1;
-				border-radius: 10px;
-				padding: 20px;
-				margin-bottom: 20px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-				transition: transform 0.3s;
-			}
+		</div>
 		
-			.perawatan-card:hover {
-				transform: scale(1.05);
-			}
-		
-			.perawatan-card h3 {
-				margin-bottom: 15px;
-			}
-		
-			.perawatan-card ul {
-				padding-left: 20px;
-			}
-		
-			.perawatan-card ul li {
-				margin-bottom: 10px;
-				color: #2c3e50;
-			}
-		</style>
 		
 
 		<!--service start -->
@@ -738,92 +617,87 @@
 		</section><!--/.clients-say-->	
 		<!-- clients-say end -->
 
-	
+	</body>
 
-		<!--blog start -->
-		<section id="blog" class="blog"></section><!--/.blog-->
-		<!--blog end -->
-
-		<!--contact start-->
 		<footer id="contact"  class="contact">
-			<div class="container">
-				<div class="footer-top">
-					<div class="row">
-						<div class="col-md-3 col-sm-6">
-							<div class="single-footer-widget">
-								<div class="footer-logo">
-									<a href="index.html">PakarMobi</a>
-								</div>
-								<p>
-									Dapatkan keputusan pembelian yang lebih percaya diri dengan PAKARMOBI.
-								</p>
-								<div class="footer-contact">
-									<p>pakarmobi@gmail.com</p>
-									<p>+62 81998632861</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-6">
-							<div class="single-footer-widget">
-								<h2>about pakarmobi</h2>
-								<ul>
-									<li><a href="#">about us</a></li>
-									<li><a href="#">career</a></li>
-									<li><a href="#">terms <span> of service</span></a></li>
-									<li><a href="#">privacy policy</a></li>
-								</ul>
-							</div>
-						</div>
-						
-						<div class="col-md-offset-4 col-md-3 col-sm-6">
-							<div class="single-footer-widget">
-								<h2>news</h2>
-								<div class="footer-newsletter">
-									<p>
-										Subscribe to get latest news  update and informations about PakarMobi
-									</p>
-								</div>
-								<div class="hm-foot-email">
-									<div class="foot-email-box">
-										<input type="text" class="form-control" placeholder="Email">
-									</div><!--/.foot-email-box-->
-									<div class="foot-email-subscribe">
-										<span><i class="fa fa-arrow-right"></i></span>
-									</div><!--/.foot-email-icon-->
-								</div><!--/.hm-foot-email-->
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-copyright">
-					<div class="row">
-						<div class="col-sm-6">
-							<p>
-								&copy; copyright pakarmobi
-							</p><!--/p-->
-						</div>
-						<div class="col-sm-6">
-							<div class="footer-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>	
-								<a href="#"><i class="fa fa-instagram"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-pinterest-p"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>	
-							</div>
-						</div>
-					</div>
-				</div><!--/.footer-copyright-->
-			</div><!--/.container-->
+        <div class="container">
+            <div class="footer-top">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">PakarMobi</a>
+                            </div>
+                            <p>
+                                Dapatkan keputusan pembelian yang lebih percaya diri dengan PAKARMOBI.
+                            </p>
+                            <div class="footer-contact">
+                                <p>pakarmobi@gmail.com</p>
+                                <p>+62 81998632861</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h2>about pakarmobi</h2>
+                            <ul>
+                                <li><a href="#">about us</a></li>
+                                <li><a href="#">career</a></li>
+                                <li><a href="#">terms <span> of service</span></a></li>
+                                <li><a href="#">privacy policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-offset-4 col-md-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h2>news</h2>
+                            <div class="footer-newsletter">
+                                <p>
+                                    Subscribe to get latest news  update and informations about PakarMobi
+                                </p>
+                            </div>
+                            <div class="hm-foot-email">
+                                <div class="foot-email-box">
+                                    <input type="text" class="form-control" placeholder="Email">
+                                </div><!--/.foot-email-box-->
+                                <div class="foot-email-subscribe">
+                                    <span><i class="fa fa-arrow-right"></i></span>
+                                </div><!--/.foot-email-icon-->
+                            </div><!--/.hm-foot-email-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>
+                            &copy; copyright pakarmobi
+                        </p><!--/p-->
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>	
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>	
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.footer-copyright-->
+        </div><!--/.container-->
 
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
-				</div>
-				
-			</div><!--/.scroll-Top-->
-			
-        </footer><!--/.contact-->
-		<!--contact end-->
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+            </div>
+            
+        </div><!--/.scroll-Top-->
+        
+    </footer><!--/.contact-->
+
 
 
 		

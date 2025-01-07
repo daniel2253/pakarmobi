@@ -88,6 +88,70 @@ button {background: transparent;border: 0;font-size: 16px;text-transform: capita
 
 html,body{height: 100%;}
 
+/* From Uiverse.io by satyamchaudharydev */ 
+button {
+    margin-top: 20px;
+    --primary-color: #000000;
+    --secondary-color: #fff;
+    --hover-color: #6a2cfc;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    padding: 0.8em 1.8em;
+    background: var(--primary-color);
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    
+  }
+  
+  button .arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+  }
+  
+  button .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+  }
+  
+  button:hover {
+    background-color: var(--hover-color);
+  }
+  
+  button:hover .arrow {
+    background: var(--secondary-color);
+  }
+  
+  button:hover .arrow:before {
+    right: 0;
+  }
+  
+  
+
 [placeholder]:focus::-webkit-input-placeholder {
   -webkit-transition: opacity 0.3s 0.3s ease; 
   -moz-transition: opacity 0.3s 0.3s ease; 
@@ -257,8 +321,6 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
     background: #0102fa;
 }
 /*.welcome-hero-txt*/
-
-
 
 /*-------------------------------------
         4. Model-Search
@@ -440,10 +502,9 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
         7. Featured-cars
 --------------------------------------*/
 .featured-cars{
-    padding-top:20px;
-    margin-top: 250px;
+    margin-top: 100px;
 }
-.featured-cars-content{padding-top:50px;}
+.featured-cars-content{padding-top:0px;}
 
 /*.single-featured-cars*/
 .featured-img-box {
@@ -740,6 +801,105 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
 @keyframes example {
     0%   {bottom:0px;}
     100%  {bottom:7px;}
+}
+
+.horizontal-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 60px;
+}
+
+/* Card styling */
+.desk-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    width: 100%;
+    max-width: 370px;
+}
+
+.desk-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon styling */
+.desk-card-icon {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+}
+
+.desk-card-icon i {
+    font-size: 36px;
+}
+
+/* Text content styling */
+.desk-card-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.desk-card-content h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.desk-card-content p {
+    margin: 0;
+    color: #333;
+    line-height: 1.8;
+}
+
+/* Colors for card categories */
+.desk-card.success .desk-card-icon {
+    background-color: #28a745;
+    color: white;
+}
+
+.desk-card.warning .desk-card-icon {
+    background-color: #ffc107;
+    color: white;
+}
+
+.desk-card.danger .desk-card-icon {
+    background-color: #dc3545;
+    color: white;
+}
+
+.perawatan-card {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.perawatan-card:hover {
+    transform: scale(1.05);
+}
+
+.perawatan-card h3 {
+    margin-bottom: 15px;
+}
+
+.perawatan-card ul {
+    padding-left: 20px;
+}
+
+.perawatan-card ul li {
+    margin-bottom: 10px;
+    color: #2c3e50;
 }
 
 
