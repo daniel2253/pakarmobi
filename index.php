@@ -347,63 +347,149 @@
 		</section><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
-		<div id="deskripsi-kelayakan" class="container" style="margin-top: 100px; margin-bottom: 100px;">
+	<style>
+    /* Container styling */
+    .horizontal-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 60px;
+    }
+
+    /* Card styling */
+    .desk-card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        width: 100%;
+        max-width: 370px;
+    }
+
+    .desk-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Icon styling */
+    .desk-card-icon {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 80px;
+    }
+
+    .desk-card-icon i {
+        font-size: 36px;
+    }
+
+    /* Text content styling */
+    .desk-card-content {
+        padding: 20px;
+        flex: 1;
+    }
+
+    .desk-card-content h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .desk-card-content p {
+        margin: 0;
+        color: #333;
+        line-height: 1.8;
+    }
+
+    /* Colors for card categories */
+    .desk-card.success .desk-card-icon {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .desk-card.warning .desk-card-icon {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .desk-card.danger .desk-card-icon {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>
+
+		<div id="deskripsi-kelayakan" class="container" style="margin-top: 170px; margin-bottom: 100px;">
 			<h2>Deskripsi Kelayakan</h2>
 			<p style="text-align: center; font-size: 16px; color: #555;">
 				Berikut adalah kriteria kelayakan mobil berdasarkan analisis kami.
 			</p>
-		
 			<!-- Kategori Sangat Layak -->
-			<div style="margin-bottom: 40px;">
-				<h3 style="color: #28a745; font-weight: bold; text-align: left;">
-					<i class="fa fa-check-circle" style="color: #28a745;"></i> Mobil Sangat Layak
-				</h3>
-				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
-					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Jarak tempuh rendah<br>
-					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC dingin dan normal<br>
-					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Mesin dalam kondisi sempurna, tidak ada kebocoran oli dan lainnya<br>
-					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Bodi dan cat masih orisinil<br>
-					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Transmisi halus, perpindahan gigi tidak terasa<br>
-					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Tapak ban masih tebal<br>
-					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Servis lengkap dan rutin<br>
-					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat lengkap
-				</p>
-			</div>
-		
-			<!-- Kategori Cukup Layak -->
-			<div style="margin-bottom: 40px;">
-				<h3 style="color: #ffc107; font-weight: bold; text-align: left;">
-					<i class="fa fa-exclamation-circle" style="color: #ffc107;"></i> Mobil Cukup Layak
-				</h3>
-				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
-					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Jarak tempuh lebih dari 100.000 KM<br>
-					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC hidup tetapi kurang dingin<br>
-					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Akselerasi masih tergolong responsif<br>
-					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat goresan halus pada bodi mobil<br>
-					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Perpindahan gigi cukup lancar<br>
-					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Tebal ban kurang lebih 80%<br>
-					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat riwayat servis, tetapi tidak rutin<br>
-					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat lengkap
-				</p>
-			</div>
-		
-			<!-- Kategori Kurang Layak -->
-			<div>
-				<h3 style="color: #dc3545; font-weight: bold; text-align: left;">
-					<i class="fa fa-times-circle" style="color: #dc3545;"></i> Mobil Kurang Layak
-				</h3>
-				<p style="margin-left: 20px; color: #333; line-height: 1.8;">
-					<i class="fa fa-car" style="color: #4a90e2; margin-right: 10px;"></i> Usia lebih dari 10 tahun<br>
-					<i class="fa fa-snowflake-o" style="color: #4a90e2; margin-right: 10px;"></i> AC mati<br>
-					<i class="fa fa-cogs" style="color: #4a90e2; margin-right: 10px;"></i> Suara mesin kasar<br>
-					<i class="fa fa-paint-brush" style="color: #4a90e2; margin-right: 10px;"></i> Terdapat banyak goresan dan dempul<br>
-					<i class="fa fa-exchange" style="color: #4a90e2; margin-right: 10px;"></i> Perpindahan gigi kasar<br>
-					<i class="fa fa-dot-circle-o" style="color: #4a90e2; margin-right: 10px;"></i> Ban sudah terlihat benangnya<br>
-					<i class="fa fa-wrench" style="color: #4a90e2; margin-right: 10px;"></i> Tidak ada riwayat servis sama sekali<br>
-					<i class="fa fa-file-text-o" style="color: #4a90e2; margin-right: 10px;"></i> Surat-surat tidak lengkap
-				</p>
-			</div>
-		</div>
+			<div class="horizontal-card-container">
+    <!-- Kategori Sangat Layak -->
+    <div class="desk-card success">
+        <div class="desk-card-icon">
+            <i class="fa fa-check-circle"></i>
+        </div>
+        <div class="desk-card-content">
+            <h3>Mobil Sangat Layak</h3>
+            <p>
+                <i class="fa fa-car" style="color: #4a90e2;"></i> Jarak tempuh rendah<br>
+                <i class="fa fa-snowflake-o" style="color: #4a90e2;"></i> AC dingin dan normal<br>
+                <i class="fa fa-cogs" style="color: #4a90e2;"></i> Mesin dalam kondisi sempurna<br>
+                <i class="fa fa-paint-brush" style="color: #4a90e2;"></i> Bodi dan cat masih orisinil<br>
+                <i class="fa fa-exchange" style="color: #4a90e2;"></i> Transmisi halus<br>
+                <i class="fa fa-dot-circle-o" style="color: #4a90e2;"></i> Tapak ban masih tebal<br>
+                <i class="fa fa-wrench" style="color: #4a90e2;"></i> Servis lengkap dan rutin<br>
+                <i class="fa fa-file-text-o" style="color: #4a90e2;"></i> Surat-surat lengkap
+            </p>
+        </div>
+    </div>
+
+    <!-- Kategori Cukup Layak -->
+    <div class="desk-card warning">
+        <div class="desk-card-icon">
+            <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="desk-card-content">
+            <h3>Mobil Cukup Layak</h3>
+            <p>
+                <i class="fa fa-car" style="color: #4a90e2;"></i> Jarak tempuh lebih dari 100.000 KM<br>
+                <i class="fa fa-snowflake-o" style="color: #4a90e2;"></i> AC hidup tetapi kurang dingin<br>
+                <i class="fa fa-cogs" style="color: #4a90e2;"></i> Akselerasi responsif<br>
+                <i class="fa fa-paint-brush" style="color: #4a90e2;"></i> Terdapat goresan halus<br>
+                <i class="fa fa-exchange" style="color: #4a90e2;"></i> Perpindahan gigi cukup lancar<br>
+                <i class="fa fa-dot-circle-o" style="color: #4a90e2;"></i> Tebal ban kurang lebih 80%<br>
+                <i class="fa fa-wrench" style="color: #4a90e2;"></i> Riwayat servis, tetapi tidak rutin<br>
+                <i class="fa fa-file-text-o" style="color: #4a90e2;"></i> Surat-surat lengkap
+            </p>
+        </div>
+    </div>
+
+    <!-- Kategori Kurang Layak -->
+    <div class="desk-card danger">
+        <div class="desk-card-icon">
+            <i class="fa fa-times-circle"></i>
+        </div>
+        <div class="desk-card-content">
+            <h3>Mobil Kurang Layak</h3>
+            <p>
+                <i class="fa fa-car" style="color: #4a90e2;"></i> Usia lebih dari 10 tahun<br>
+                <i class="fa fa-snowflake-o" style="color: #4a90e2;"></i> AC mati<br>
+                <i class="fa fa-cogs" style="color: #4a90e2;"></i> Suara mesin kasar<br>
+                <i class="fa fa-paint-brush" style="color: #4a90e2;"></i> Banyak goresan dan dempul<br>
+                <i class="fa fa-exchange" style="color: #4a90e2;"></i> Perpindahan gigi kasar<br>
+                <i class="fa fa-dot-circle-o" style="color: #4a90e2;"></i> Ban sudah terlihat benangnya<br>
+                <i class="fa fa-wrench" style="color: #4a90e2;"></i> Tidak ada riwayat servis<br>
+                <i class="fa fa-file-text-o" style="color: #4a90e2;"></i> Surat-surat tidak lengkap
+            </p>
+        </div>
+    </div>
+</div>
 
 		<<div id="perawatan" class="container" style="margin-top: 100px; margin-bottom: 100px;">
 			<h2 class="text-center" style="color: #2c3e50;">Perawatan Mobil</h2>
@@ -480,7 +566,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<style>
 			.perawatan-card {
 				background-color: #ecf0f1;
