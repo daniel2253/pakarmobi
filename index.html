@@ -55,6 +55,128 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+		<style>
+			.perawatan-section {
+				margin: 50px auto;
+				max-width: 1200px;
+				padding: 20px;
+			}
+	
+			.perawatan-item {
+				display: flex;
+				align-items: center;
+				margin-bottom: 40px;
+				padding: 20px;
+				border-radius: 10px;
+				background-color: #ecf0f1;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s;
+			}
+	
+			.perawatan-item:hover {
+				transform: scale(1.05);
+			}
+	
+			.perawatan-item:nth-child(even) {
+				flex-direction: row-reverse;
+			}
+	
+			.perawatan-content {
+				flex: 1;
+				padding: 20px;
+			}
+	
+			.perawatan-content h3 {
+				color: #3498db;
+				margin-bottom: 15px;
+			}
+	
+			.perawatan-content ul {
+				padding-left: 20px;
+			}
+	
+			.perawatan-content ul li {
+				margin-bottom: 10px;
+				color: #2c3e50;
+				line-height: 1.8;
+			}
+	
+			.perawatan-image {
+				flex: 1;
+				text-align: center;
+			}
+	
+			.perawatan-image img {
+				max-width: 100%;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			/* Gaya untuk hasil output */
+			#hasil {
+				margin: 50px auto;
+				max-width: 1200px; /* Membatasi lebar agar tidak melebihi kontainer */
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+				padding: 20px;
+				background-color: #f9f9f9;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				margin-top: 20px;
+				font-family: Arial, sans-serif;
+				color: #333;
+				overflow-x: auto; /* Memungkinkan scroll horizontal jika konten terlalu lebar */
+			}
+		
+			#hasil h3 {
+				margin-bottom: 15px;
+				color: #2c3e50;
+				font-weight: bold;
+				text-align: center;
+			}
+		
+			#hasil table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 20px;
+			}
+		
+			#hasil table th,
+			#hasil table td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+				word-wrap: break-word; /* Memastikan teks terbungkus dalam kolom */
+			}
+		
+			#hasil table th {
+				background-color: #3498db;
+				color: white;
+			}
+		
+			#hasil ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+		
+			#hasil ul li {
+				margin-bottom: 10px;
+				padding-left: 20px;
+				position: relative;
+			}
+		
+			#hasil ul li::before {
+				content: "•";
+				position: absolute;
+				left: 0;
+				color: #3498db;
+				font-size: 20px;
+			}
+
+			
+		</style>
+
     </head>
 	
 	<body>
@@ -101,22 +223,67 @@
 						<h2> Mobil Bekas Anda. </h2>	
 				</div>
 			</div>
+			
 			<script>
-
-
-				function hitungCF() {
-    					// Nilai CF Pakar
-						const cfPakar = {
-							jarakTempuh: 0.3,     
-							mesin: 0.3,           
-							transmisi: 0.2,      
-							servis: 0.125,          
-							ac: 0.2,              
-							body: 0.125,           
-							ban: 0.125,            
-							suratKendaraan: 0.2   
-						};
-
+					function hitungCF() {
+					// Ambil nilai dari elemen input data pribadi
+					const nama = document.getElementById('nama').value;
+					const umur = document.getElementById('umur').value;
+					const alamat = document.getElementById('alamat').value;
+					const pekerjaan = document.getElementById('pekerjaan').value;
+			
+					// Validasi input data pribadi
+					if (!nama || !umur || !alamat || !pekerjaan) {
+						alert('Harap isi semua data pribadi!');
+						return;
+					}
+			
+					// Ambil nilai gejala dan deskripsinya
+					const gejala = [
+						{ id: 'g01', label: 'Usia dan Jarak Tempuh' },
+						{ id: 'g04', label: 'Kondisi AC' },
+						{ id: 'g07', label: 'Kondisi Mesin' },
+						{ id: 'g10', label: 'Kondisi Body' },
+						{ id: 'g13', label: 'Kondisi Transmisi' },
+						{ id: 'g16', label: 'Kondisi Ban' },
+						{ id: 'g19', label: 'Riwayat Servis' },
+						{ id: 'g21', label: 'Surat Kendaraan' },
+					];
+			
+					const nilaiGejala = [];
+					const deskripsiGejala = [];
+			
+					gejala.forEach(gejalaItem => {
+						const elemen = document.getElementById(gejalaItem.id);
+						const nilai = parseFloat(elemen.value);
+						const teks = elemen.options[elemen.selectedIndex].text;
+			
+						if (isNaN(nilai)) {
+							alert(`Harap pilih kondisi untuk ${gejalaItem.label}!`);
+							return;
+						}
+			
+						nilaiGejala.push(nilai);
+						deskripsiGejala.push({ label: gejalaItem.label, teks });
+					});
+			
+					// Jika ada gejala yang belum dipilih, hentikan proses
+					if (nilaiGejala.length !== gejala.length) {
+						return;
+					}
+			
+					// Nilai CF Pakar
+					const cfPakar = {
+						jarakTempuh: 0.3,
+						mesin: 0.3,
+						transmisi: 0.2,
+						servis: 0.125,
+						ac: 0.2,
+						body: 0.125,
+						ban: 0.125,
+						suratKendaraan: 0.2,
+					};
+			
 					const rekomendasiPerbaikan = [
 						"Jarak tempuh perlu diperiksa dan diservis",
 						"AC mobil perlu diperiksa atau diservis",
@@ -125,44 +292,23 @@
 						"Transmisi memerlukan pengecekan dan perawatan",
 						"Ban mobil perlu diganti atau diperiksa",
 						"Riwayat servis mobil perlu diperbaiki",
-						"Surat kendaraan perlu diperhatikan kelengkapannya"
+						"Surat kendaraan perlu diperhatikan kelengkapannya",
 					];
-
-					const gejala = [
-						parseFloat(document.getElementById('g01').value),
-						parseFloat(document.getElementById('g04').value),
-						parseFloat(document.getElementById('g07').value),
-						parseFloat(document.getElementById('g10').value),
-						parseFloat(document.getElementById('g13').value),
-						parseFloat(document.getElementById('g16').value),
-						parseFloat(document.getElementById('g19').value),
-						parseFloat(document.getElementById('g21').value)
-					];
-
-					if (gejala.some(isNaN)) {
-						alert('Harap isi semua kondisi gejala terlebih dahulu!');
-						return;
-					}
-
+			
+					// Hitung CF Rule
 					const cfRule = [];
-					for (let i = 0; i < gejala.length; i++) {
-						cfRule.push(cfPakar[Object.keys(cfPakar)[i]] * gejala[i]);
+					for (let i = 0; i < nilaiGejala.length; i++) {
+						cfRule.push(cfPakar[Object.keys(cfPakar)[i]] * nilaiGejala[i]);
 					}
-
+			
 					// Hitung CF Combine
-					let cfCombine = cfRule[0]; // Nilai awal
-					let langkahPerhitungan = `<p>Langkah-langkah perhitungan CF:</p>`;
-					langkahPerhitungan += `<p>CF Rule (CF Pakar × CF User): ${cfRule.map(cf => cf.toFixed(2)).join(', ')}</p>`;
-
+					let cfCombine = cfRule[0];
 					for (let i = 1; i < cfRule.length; i++) {
-						const prev = cfCombine;
-						cfCombine = prev + cfRule[i] * (1 - prev);
-						langkahPerhitungan += `<p>CF Combine ${i}: (${prev.toFixed(2)} + ${cfRule[i].toFixed(2)} × (1 - ${prev.toFixed(2)})) = ${cfCombine.toFixed(2)}</p>`;
+						cfCombine = cfCombine + cfRule[i] * (1 - cfCombine);
 					}
-
+			
 					// Tentukan hasil akhir
 					let hasil = '';
-
 					if (cfCombine >= 0.8) {
 						hasil = 'Mobil Anda sangat layak digunakan. Kondisi sangat baik dan mendekati standar mobil baru.';
 					} else if (cfCombine >= 0.6) {
@@ -170,39 +316,155 @@
 					} else {
 						hasil = 'Mobil Anda kurang layak digunakan. Banyak aspek perlu diperbaiki.';
 					}
-
-					    // Tentukan rekomendasi perbaikan
+			
+					// Tentukan rekomendasi perbaikan
 					const aspekPerbaikan = [];
 					for (let i = 0; i < cfRule.length; i++) {
 						if (cfRule[i] < (cfPakar[Object.keys(cfPakar)[i]] * 0.8)) {
-							// Hanya tambahkan rekomendasi jika CF Rule jauh di bawah threshold 60%
 							aspekPerbaikan.push(rekomendasiPerbaikan[i]);
 						}
 					}
 
-					// Tampilkan hasil
-					document.getElementById('hasil').innerHTML = `<p><strong>Hasil:</strong> ${hasil}</p>`;
-					document.getElementById('hasil').style.display = 'block';
-
-					// Tampilkan aspek perbaikan
-					const aspekElement = document.getElementById('aspek-perbaikan');
-					aspekElement.innerHTML = `<p><strong>Rekomendasi Perbaikan:</strong></p>`;
-					aspekElement.innerHTML += aspekPerbaikan.length > 0
-						? `<ul>${aspekPerbaikan.map(aspek => `<li>${aspek}</li>`).join('')}</ul>`
-						: `<p>Tidak ada aspek yang perlu diperbaiki.</p>`;
-					aspekElement.style.display = 'block';
-
-					// Tampilkan langkah-langkah perhitungan
-					const langkahElement = document.getElementById('langkah-cf');
-					langkahElement.innerHTML = langkahPerhitungan;
-					langkahElement.style.display = 'block';
-
-					document.getElementById('hasil').style.display = 'block';
+							
+					// Tampilkan data pribadi, pilihan gejala, dan hasil analisis
+					const outputElement = document.getElementById('hasil');
+					outputElement.innerHTML = `
+    <div class="card">
+        <h3>Data Pribadi</h3>
+        <table>
+            <tr><th>Nama</th><td>${nama}</td></tr>
+            <tr><th>Umur</th><td>${umur} tahun</td></tr>
+            <tr><th>Alamat</th><td>${alamat}</td></tr>
+            <tr><th>Pekerjaan</th><td>${pekerjaan}</td></tr>
+        </table>
+    </div>
+    <div class="card">
+        <h3>Kondisi yang Dipilih</h3>
+        <table>
+            <tr><th>Kriteria</th><th>Kondisi</th></tr>
+            ${deskripsiGejala.map(gejala => `<tr><td>${gejala.label}</td><td>${gejala.teks}</td></tr>`).join('')}
+        </table>
+    </div>
+    <div class="card">
+        <h3>Hasil Analisis</h3>
+        <p><strong>Hasil:</strong> ${hasil}</p>
+    </div>
+    <div class="card">
+        <h3>Rekomendasi Perbaikan</h3>
+        ${aspekPerbaikan.length > 0 
+            ? `<ul>${aspekPerbaikan.map(aspek => `<li>${aspek}</li>`).join('')}</ul>` 
+            : '<p>Tidak ada aspek yang perlu diperbaiki.</p>'}
+    </div>
+`;
+					outputElement.style.display = 'block';
 				}
-
-
 			</script>
+			<style>
+				.card {
+					border-radius: 8px; /* Membuat sudut melengkung */
+					padding: 20px; /* Memberikan ruang di dalam card */
+					margin: 10px 0; /* Memberikan jarak antar card */
+					border-left-width: 300px;
+					background-color: #fff; /* Warna latar */
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+				}
 			
+				.card h3 {
+					margin-top: 0; /* Hilangkan margin atas */
+					color: #000000; /* Warna judul */
+				}
+			
+				.card table {
+					width: 100%; /* Lebar penuh */
+					border-collapse: collapse; /* Hilangkan jarak antar sel */
+				}
+			
+				.card table th, 
+				.card table td {
+					text-align: left; /* Teks rata kiri */
+					padding: 8px; /* Jarak dalam sel */
+					border-bottom: 1px solid #ddd; /* Garis bawah */
+				}
+			
+				.card ul {
+					padding-left: 20px; /* Jarak kiri untuk daftar */
+					margin: 10px 0; /* Jarak atas dan bawah */
+				}
+			
+				.card ul li {
+					margin-bottom: 5px; /* Jarak antar item dalam daftar */
+				}
+			
+				#hasil {
+					margin-top: 20px; /* Jarak dari elemen atas */
+				}
+			</style>
+			
+			
+
+<div section id="user" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="model-search-content">
+                <form id="userForm">
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="umur">Umur:</label>
+                        <input type="number" id="umur" class="form-control" placeholder="Masukkan umur Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan:</label>
+                        <input type="text" id="pekerjaan" class="form-control" placeholder="Masukkan pekerjaan Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat:</label>
+                        <input type="text" id="alamat" class="form-control" placeholder="Masukkan alamat Anda" required>
+                    </div>
+					<div class="center-text">
+						Harap Isi Dengan Benar
+					</div>
+					
+					<style>
+						.center-text {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							height: 10vh; /* Atur sesuai kebutuhan */
+							text-align: center;
+						}
+					</style>
+					
+                </form>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('userForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Mencegah reload halaman
+        
+        // Ambil nilai input dari form
+        const nama = document.getElementById('nama').value;
+        const umur = document.getElementById('umur').value;
+        const pekerjaan = document.getElementById('pekerjaan').value;
+        const alamat = document.getElementById('alamat').value;
+        
+        // Tampilkan data ke div output
+        document.getElementById('outputNama').textContent = nama;
+        document.getElementById('outputUmur').textContent = umur;
+        document.getElementById('outputPekerjaan').textContent = pekerjaan;
+        document.getElementById('outputAlamat').textContent = alamat;
+        document.getElementById('output').style.display = 'block'; // Tampilkan div output
+    });
+</script>
+
+
+
+
 			<div section id="fitur" class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -393,6 +655,7 @@
         </div>
     </div>
 </div>
+		</div>
 
 		<div section id="perawatan" class="container" style="margin-top: 120px; padding-top: 10px;">
 			<h1 class="text-center" style="color: #2c3e50;">Perawatan Mobil</h1>
@@ -402,76 +665,92 @@
 			<br>
 			
 		
-			<div class="row">
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">1. Perawatan Mesin</h3>
-						<ul>
-							<li>Ganti oli secara teratur.</li>
-							<li>Periksa cairan rem, radiator, dan lainnya.</li>
-							<li>Servis rutin sesuai jadwal.</li>
-						</ul>
-					</div>
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>1. Perawatan Mesin</h3>
+					<ul>
+						<li>&bull; Ganti oli secara teratur.</li>
+						<li>&bull; Periksa cairan rem, radiator, dan lainnya.</li>
+						<li>&bull; Servis rutin sesuai jadwal.</li>
+					</ul>
 				</div>
-		
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">2. Merawat Eksterior</h3>
-						<ul>
-							<li>Cuci mobil secara rutin.</li>
-							<li>Gunakan wax untuk melindungi cat.</li>
-							<li>Parkir di tempat teduh.</li>
-						</ul>
-					</div>
-				</div>
-		
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">3. Merawat Interior</h3>
-						<ul>
-							<li>Vakum interior secara rutin.</li>
-							<li>Bersihkan dashboard dan jok dengan cairan khusus.</li>
-							<li>Gunakan penghilang kelembapan.</li>
-						</ul>
-					</div>
+				<div class="perawatan-image">
+					<img src="assets/images/1.jpg" alt="Perawatan Mesin">
 				</div>
 			</div>
-		
-			<div class="row" style="margin-top: 30px;">
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">4. Ban dan Suspensi</h3>
-						<ul>
-							<li>Periksa tekanan angin ban secara berkala.</li>
-							<li>Lakukan rotasi ban setiap 10.000 km.</li>
-							<li>Ganti ban jika sudah aus.</li>
-						</ul>
-					</div>
+			
+	
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>2. Merawat Eksterior</h3>
+					<ul>
+						<li>&bull;Cuci mobil secara rutin.</li>
+						<li>&bull;Gunakan wax untuk melindungi cat.</li>
+						<li>&bull;Parkir di tempat teduh.</li>
+					</ul>
 				</div>
-		
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">5. Cara Mengemudi</h3>
-						<ul>
-							<li>Hindari pengereman mendadak.</li>
-							<li>Gunakan bahan bakar berkualitas.</li>
-							<li>Jangan membawa beban berlebih.</li>
-						</ul>
-					</div>
+				<div class="perawatan-image">
+					<img src="assets/images/2.jpg" alt="Merawat Eksterior">
 				</div>
-		
-				<div class="col-md-4">
-					<div class="perawatan-card">
-						<h3 style="color: #3498db;">6. Dokumen Kendaraan</h3>
-						<ul>
-							<li>Pastikan STNK dan asuransi selalu aktif.</li>
-							<li>Lengkapi dokumen kendaraan Anda.</li>
-						</ul>
-					</div>
+			</div>
+	
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>3. Merawat Interior</h3>
+					<ul>
+						<li>&bull;Vakum interior secara rutin.</li>
+						<li>&bull;Bersihkan dashboard dan jok dengan cairan khusus.</li>
+						<li>&bull;Gunakan penghilang kelembapan.</li>
+					</ul>
+				</div>
+				<div class="perawatan-image">
+					<img src="assets/images/3.jpg" alt="Merawat Interior">
+				</div>
+			</div>
+	
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>4. Ban dan Suspensi</h3>
+					<ul>
+						<li>&bull;Periksa tekanan angin ban secara berkala.</li>
+						<li>&bull;Lakukan rotasi ban setiap 10.000 km.</li>
+						<li>&bull;Ganti ban jika sudah aus.</li>
+					</ul>
+				</div>
+				<div class="perawatan-image">
+					<img src="assets/images/4.jpg" alt="Ban dan Suspensi">
+				</div>
+			</div>
+	
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>5. Cara Mengemudi</h3>
+					<ul>
+						<li>&bull;Hindari pengereman mendadak.</li>
+						<li>&bull;Gunakan bahan bakar berkualitas.</li>
+						<li>&bull;Jangan membawa beban berlebih.</li>
+					</ul>
+				</div>
+				<div class="perawatan-image">
+					<img src="assets/images/5.jpg" alt="Cara Mengemudi">
+				</div>
+			</div>
+	
+			<div class="perawatan-item">
+				<div class="perawatan-content">
+					<h3>6. Dokumen Kendaraan</h3>
+					<ul>
+						<li>&bull;Pastikan STNK dan asuransi selalu aktif.</li>
+						<li>&bull;Lengkapi dokumen kendaraan Anda.</li>
+					</ul>
+				</div>
+				<div class="perawatan-image">
+					<img src="assets/images/6.jpg" alt="Dokumen Kendaraan">
 				</div>
 			</div>
 		</div>
-		</div>
+	
+		
 		
 		
 
