@@ -322,6 +322,20 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
 }
 /*.welcome-hero-txt*/
 
+
+
+.form-group {
+    margin-left: 30px; /* Memberikan jarak antar elemen */
+    margin-right: 30px;
+    position: relative;
+    
+}
+.form-group textarea {
+    width: 100px; /* Atur lebar textarea */
+    height: 34px; /* Seragamkan tinggi dengan input lainnya */
+}
+
+
 /*-------------------------------------
         4. Model-Search
 --------------------------------------*/
