@@ -325,43 +325,53 @@
 						}
 					}
 
-							
+						
 					// Tampilkan data pribadi, pilihan gejala, dan hasil analisis
 					const outputElement = document.getElementById('hasil');
+					
 					outputElement.innerHTML = `
-    <div class="card">
-        <h3>Data Pribadi</h3>
-        <table>
-            <tr><th>Nama</th><td>${nama}</td></tr>
-            <tr><th>Umur</th><td>${umur} tahun</td></tr>
-            <tr><th>Alamat</th><td>${alamat}</td></tr>
-            <tr><th>Pekerjaan</th><td>${pekerjaan}</td></tr>
-        </table>
-    </div>
-    <div class="card">
-        <h3>Kondisi yang Dipilih</h3>
-        <table>
-            <tr><th>Kriteria</th><th>Kondisi</th></tr>
-            ${deskripsiGejala.map(gejala => `<tr><td>${gejala.label}</td><td>${gejala.teks}</td></tr>`).join('')}
-        </table>
-    </div>
-    <div class="card">
-        <h3>Hasil Analisis</h3>
-        <p><strong>Hasil:</strong> ${hasil}</p>
-    </div>
-    <div class="card">
-        <h3>Rekomendasi Perbaikan</h3>
-        ${aspekPerbaikan.length > 0 
-            ? `<ul>${aspekPerbaikan.map(aspek => `<li>${aspek}</li>`).join('')}</ul>` 
-            : '<p>Tidak ada aspek yang perlu diperbaiki.</p>'}
-    </div>
+					<div class ="labelhasil">
+						<div class="card">
+							<h3>Data Pribadi</h3>
+							<table>
+								<tr><th>Nama</th><td>${nama}</td></tr>
+								<tr><th>Umur</th><td>${umur} tahun</td></tr>
+								<tr><th>Alamat</th><td>${alamat}</td></tr>
+								<tr><th>Pekerjaan</th><td>${pekerjaan}</td></tr>
+							</table>
+						</div>
+						<div class="card">
+							<h3>Kondisi yang Dipilih</h3>
+							<table>
+								<tr><th>Kriteria</th><th>Kondisi</th></tr>
+								${deskripsiGejala.map(gejala => `<tr><td>${gejala.label}</td><td>${gejala.teks}</td></tr>`).join('')}
+							</table>
+						</div>
+						<div class="card">
+							<h3>Hasil Analisis</h3>
+							<p><strong>Hasil:</strong> ${hasil}</p>
+						</div>
+						<div class="card">
+							<h3>Rekomendasi Perbaikan</h3>
+							${aspekPerbaikan.length > 0 
+								? `<ul>${aspekPerbaikan.map(aspek => `<li>${aspek}</li>`).join('')}</ul>` 
+								: '<p>Tidak ada aspek yang perlu diperbaiki.</p>'}
+						</div>
+					</div>
 `;
+					
 					outputElement.style.display = 'block';
+					outputElement.style.height = '400px'; // Sesuaikan tinggi otomatis
+					const userElement = document.getElementById('user');
+						if (userElement) {
+							userElement.style.display = 'none';
 				}
+
+			}
 			</script>
 			<style>
 				.card {
-					border-radius: 8px; /* Membuat sudut melengkung */
+					border-radius: 2px; /* Membuat sudut melengkung */
 					padding: 20px; /* Memberikan ruang di dalam card */
 					margin: 10px 0; /* Memberikan jarak antar card */
 					border-left-width: 300px;
@@ -370,12 +380,13 @@
 				}
 			
 				.card h3 {
-					margin-top: 0; /* Hilangkan margin atas */
+					margin-top: 0px; /* Hilangkan margin atas */
 					color: #000000; /* Warna judul */
+					padding-top: 0px;
 				}
 			
 				.card table {
-					width: 100%; /* Lebar penuh */
+					width: 20px; /* Lebar penuh */
 					border-collapse: collapse; /* Hilangkan jarak antar sel */
 				}
 			
@@ -387,7 +398,7 @@
 				}
 			
 				.card ul {
-					padding-left: 20px; /* Jarak kiri untuk daftar */
+					padding-left: 10px; /* Jarak kiri untuk daftar */
 					margin: 10px 0; /* Jarak atas dan bawah */
 				}
 			
@@ -402,10 +413,10 @@
 			
 			
 
-<div section id="user" class="container">
+<div section id="user" class="container" style="padding-top: 200px; margin-top: 180px;">
     <div class="row">
         <div class="col-md-12">
-            <div class="model-search-content">
+            <div class="model-search-content" style="padding-bottom: 200px; margin-bottom: 180px;" >
                 <form id="userForm">
                     <div class="form-group">
                         <label for="nama">Nama:</label>
@@ -461,9 +472,6 @@
         document.getElementById('output').style.display = 'block'; // Tampilkan div output
     });
 </script>
-
-
-
 
 			<div section id="fitur" class="container">
 				<div class="row">
